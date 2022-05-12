@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const handleShowAlert = () => {
+    alert("Hello React!");
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,6 +13,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={handleShowAlert}>Show Alert</button>
         <a
           className="App-link"
           href="https://reactjs.org"
