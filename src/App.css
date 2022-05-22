@@ -42,3 +42,43 @@ button {
   padding: 6px 32px;
   margin: 8px auto;
 } 
+
+form#username-form {
+  display: flex;
+  flex-direction: column;
+  border: 4px black solid;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
+}
+form#username-form input {
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 5px;
+}
+form#username-form button {
+  width: 90%;
+  padding: 3px;
+  margin: 10px auto;
+}
+
+span#error-message {
+  color: red;
+  margin: 2px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+span#success-message {
+  color: green;
+  margin: 2px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+span#warning-message {
+  color: orange;
+  margin: 2px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
