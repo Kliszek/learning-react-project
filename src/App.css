@@ -51,16 +51,6 @@ form#username-form {
   margin: 20px;
   padding: 20px;
 }
-form#username-form input {
-  margin-top: 10px;
-  font-size: 16px;
-  padding: 5px;
-}
-form#username-form button {
-  width: 90%;
-  padding: 3px;
-  margin: 10px auto;
-}
 
 span#error-message {
   color: red;
