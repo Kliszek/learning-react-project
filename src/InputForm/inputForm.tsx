@@ -65,7 +65,7 @@ export const InputForm = (props? : InputData) => {
         }
     },[]);
 
-    return <div style={{"width": "350px"}}>
+    return <div className="mt-10 w-96">
         <form onSubmit={handleSubmit} id="username-form">
             {successMessage && <span id="success-message">{successMessage}</span>}
             <label htmlFor="username-input">Username:</label>

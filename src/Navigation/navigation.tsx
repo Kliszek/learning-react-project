@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavRouteItem, NavRoutes } from "./routes";
-//import { NavRouteItem, NavRoutes } from "./routes";
 
 export const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
@@ -16,8 +15,8 @@ export const Navigation = () => {
         </li>
         {NavRoutes.map((item:NavRouteItem) => 
           <li className={`${showNavigation?'block':'hidden'} md:block`} key={item.key}>
-            <Link to={item.address} className="flex flex-row items-center justify-center gap-2 px-10 py-3 hover:underline hover:bg-slate-800 duration-200">
-              {item.icon && <span>{ item.icon }</span> }
+            <Link to={item.address} onClick={()=>setShowNavigation(false)} className="flex flex-row items-center justify-center gap-2 px-10 py-3 hover:underline hover:bg-slate-800 duration-200">
+              {item.icon && <>{ item.icon }</> }
               {item.name}
             </Link>
           </li>

@@ -11,16 +11,12 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Navigation />
-          <Routes>
-            {NavRoutes.map(item => <Route key={item.key} path={item.address} element={item.component}>
-            </Route>)}
-          </Routes>
-          <a
-            className="hover:underline"
-            href="https://github.com/Kliszek/learning-react-project/"
-          >
-            My project on GitHub
-          </a>
+          <div className='max-w-xl md:max-w-2xl lg:max-w-4xl' id="content">
+            <Routes>
+              {NavRoutes.map(item => <Route key={item.key} path={item.address} element={item.component}>
+              </Route>)}
+            </Routes>
+          </div>
         </header>
       </div>
     </Router>
