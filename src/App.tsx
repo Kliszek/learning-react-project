@@ -1,38 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { InputForm } from './InputForm';
+import { Navigation } from './Navigation';
+import { NavRoutes } from './Navigation/routes';
 
 function App() {
-  const handleShowAlert = () => {
-    alert("Hello React!");
-  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {/* <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p> */}
-        <InputForm username=""></InputForm>
-        <button onClick={handleShowAlert}>Show Alert</button>
-        <a
-          className="App-link"
-          href="https://github.com/Kliszek/learning-react-project/"
-        >
-          My project on github
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Navigation />
+          <Routes>
+            {NavRoutes.map(item => <Route key={item.key} path={item.address} element={item.component}>
+            </Route>)}
+          </Routes>
+          <a
+            className="hover:underline"
+            href="https://github.com/Kliszek/learning-react-project/"
+          >
+            My project on GitHub
+          </a>
+        </header>
+      </div>
+    </Router>
   );
 }
 
