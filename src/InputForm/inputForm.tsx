@@ -65,14 +65,14 @@ export const InputForm = (props? : InputData) => {
         }
     },[]);
 
-    return <div style={{"width": "350px"}}>
+    return <div className="mt-10 w-96">
         <form onSubmit={handleSubmit} id="username-form">
             {successMessage && <span id="success-message">{successMessage}</span>}
             <label htmlFor="username-input">Username:</label>
-            <input onInput={handleInputChange} value={inputValue} placeholder="Enter your username here..." id="username-input"></input>
+            <input className="rounded-sm text-gray-800 p-2 mt-5 text-lg" onInput={handleInputChange} value={inputValue} placeholder="Enter your username here..." id="username-input"></input>
             {warningMessage && <span id="warning-message">{warningMessage}</span>}
             {errorMessage && <span id="error-message">{errorMessage}</span>}
-            <button disabled={!formReady} type="submit">Submit</button>
+            <button className="bg-slate-700 rounded-sm p-2 w-4/5 mt-4 hover:bg-slate-800 disabled:text-gray-400 disabled:cursor-not-allowed disabled:bg-slate-600" disabled={!formReady} type="submit">Submit</button>
         </form>
     </div>
 }

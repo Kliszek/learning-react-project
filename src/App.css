@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -50,16 +50,6 @@ form#username-form {
   border-radius: 5px;
   margin: 20px;
   padding: 20px;
-}
-form#username-form input {
-  margin-top: 10px;
-  font-size: 16px;
-  padding: 5px;
-}
-form#username-form button {
-  width: 90%;
-  padding: 3px;
-  margin: 10px auto;
 }
 
 span#error-message {
