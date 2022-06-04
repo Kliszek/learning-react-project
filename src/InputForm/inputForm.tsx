@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Airtable from 'airtable';
 
 export interface InputData {
     username : string
@@ -32,6 +33,22 @@ export const InputForm = (props? : InputData) => {
         }
     }
 
+    const apiKey = process.env.REACT_APP_AIRTABLE_API_KEY
+    const dbId = process.env.REACT_APP_AIRTABLE_API_DB_ID
+    const base = new Airtable({apiKey}).base(`${dbId}`);
+
+    base('table-1').select({
+    }).eachPage(function page(records, fetchNextPage) {
+    
+        records.forEach(function(record) {
+            console.log('Retrieved', record.get('Name'));
+        });
+        fetchNextPage();
+    
+    }, function done(err) {
+        if (err) { console.error(err); return; }
+    });
+
     const handleSubmit = (event : any) => {
         event.preventDefault();
         if (formReady)
@@ -55,6 +72,10 @@ export const InputForm = (props? : InputData) => {
                 setTimeout(setSuccessMessage, 3000, "");
             }
         }
+    }
+
+    const handleSetNewRecord = () => {
+
     }
 
     useEffect(() => {
