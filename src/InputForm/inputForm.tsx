@@ -7,6 +7,7 @@ export interface InputData {
 
 export const InputForm = (props? : InputData) => {
 
+    const tableName = process.env.REACT_APP_AIRTABLE_API_TABLE;
     const [inputValue, setInputValue] = useState<string>("");
     const [warningMessage, setWarningMessage] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string>("");
@@ -37,17 +38,17 @@ export const InputForm = (props? : InputData) => {
     const dbId = process.env.REACT_APP_AIRTABLE_API_DB_ID
     const base = new Airtable({apiKey}).base(`${dbId}`);
 
-    base('table-1').select({
-    }).eachPage(function page(records, fetchNextPage) {
+    // base(`${tableName}`).select({
+    // }).eachPage(function page(records, fetchNextPage) {
     
-        records.forEach(function(record) {
-            console.log('Retrieved', record.get('Name'));
-        });
-        fetchNextPage();
+    //     records.forEach(function(record) {
+    //         console.log('Retrieved', record.get('Name'));
+    //     });
+    //     fetchNextPage();
     
-    }, function done(err) {
-        if (err) { console.error(err); return; }
-    });
+    // }, function done(err) {
+    //     if (err) { console.error(err); return; }
+    // });
 
     const handleSubmit = (event : any) => {
         event.preventDefault();
@@ -67,15 +68,31 @@ export const InputForm = (props? : InputData) => {
 
             else
             {
-                localStorage.setItem("username", inputValue);
-                setSuccessMessage("Username submitted successfully!");
+                handleSetNewRecord();
+                //localStorage.setItem("username", inputValue);
+                setSuccessMessage("Record added successfully!");
                 setTimeout(setSuccessMessage, 3000, "");
             }
         }
     }
 
     const handleSetNewRecord = () => {
-
+        base(`${tableName}`).create([
+            {
+              "fields": {
+                "Name": inputValue,
+              }
+            }
+          ], function(err, records: any) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            records.forEach(function (record: any) {
+              console.log(`Saved value: ${record.name}`);
+              setInputValue('');
+            });
+          });
     }
 
     useEffect(() => {
