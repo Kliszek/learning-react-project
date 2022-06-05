@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Airtable from 'airtable';
 
 export interface InputData {
@@ -40,7 +40,7 @@ export const InputForm = (props? : InputData) => {
     const dbId = process.env.REACT_APP_AIRTABLE_API_DB_ID
     const base = new Airtable({apiKey}).base(`${dbId}`);
 
-    const handleLoadRecords = async () => {
+    const handleLoadRecords = useCallback(async () => {
         await base(`${tableName}`).select({
             fields:["Name", "Id"],
             sort:[{field:"Id", direction:"desc"}]
@@ -56,7 +56,7 @@ export const InputForm = (props? : InputData) => {
         }, function done(err) {
             if (err) { console.error(err); return; }
         });
-    }
+    },[base, tableName])
 
     const handleSubmit = async (event : any) => {
         event.preventDefault();
@@ -112,7 +112,7 @@ export const InputForm = (props? : InputData) => {
         {
             setInputValue(loadedUsername);
         }
-    },[]);
+    },[handleLoadRecords]);
 
     return <div className="mt-10 w-96">
         <form onSubmit={handleSubmit} id="username-form">
